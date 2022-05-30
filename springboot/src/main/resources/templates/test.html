@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="static/jquery-3.6.0.js"></script>
+<script>
+    alert($);
+    alert("111")
+    let hero = {
+        "sno": "",
+        "name": "张伟",
+        "age": ""
+    }
+
+    $.ajax({
+        url: "/user",
+        data: JSON.stringify(hero),
+        type: "GET",
+        contentType: "application/json",
+        success: function (data) {
+            alert("提交成功，请在Tomcat控制台查看服务端接收到的数据");
+        }
+    })
+</script>
+<body>
+<table>
+    <tr style="border:5px solid #88ff00;">
+        <th style="border:1px solid #88ff00;">学号</th>
+        <th style="border:1px solid #88ff00;">姓名</th>
+        <th style="border:1px solid #88ff00;">年龄</th>
+    </tr>
+    <tr style="border:5px solid #88ff00;" th:each="user:${userList}">
+        <td style="border:1px solid #88ff00;" th:text="${user.sno}"></td>
+        <td style="border:1px solid #88ff00;" th:text="${user.name}"></td>
+        <td style="border:1px solid #88ff00;" th:text="${user.age}"></td>
+    </tr>
+    <td><input style="width: 60px;height: 30px" type="button" id="aaa" value="提交"></td>
+</table>
+</body>
+</html>
